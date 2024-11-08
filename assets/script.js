@@ -20,15 +20,20 @@ const slides = [
 	}
 ]
 
-function dots(numberDot){
+
+function creatDots(numberDot){
+
 	for ( let i = 0; i <numberDot; i++){ 
 		var newSpan = document.createElement("span"); // créer un span
-		newSpan.classList.add("dot");//ajouter la class dot (represent les bull points) 
-		document.getElementById("dot_selected").appendChild(newSpan);// Ajouter le span dans la div dont l'Id est dot_selected
+		if (i === 0) {
+			newSpan.classList.add("dot_selected");
+		}  
+		newSpan.classList.add("dot");//ajouter la class dot (represent les bull points)
+		document.getElementById("dots_container").appendChild(newSpan);// Ajouter le span dans la div dont l'Id est dot_selected
 	}
 }
 
-dots(slides.length)
+creatDots(slides.length)
 
 let numero = 0;// effectuer la numéroration des slides en créant une variable qui changera en fonction des slide
 
@@ -53,10 +58,7 @@ function ChangeSlide(sens) {//	sens est un paramettre qui permet de sur quelle f
 		dot[i].classList.remove("dot_selected"); // Supprime la classe de sélection de tous les points
 	}
 	dot[numero].classList.add("dot_selected"); // Ajoute la classe de sélection au point actif
-
 }
-
-setInterval("ChangeSlide(1)", 4000); // diapo en boucle infinie
 
 let arrow_left = document.querySelector(".arrow_left") // manipuler la flèche gauche
 arrow_left.addEventListener("click", function () {
